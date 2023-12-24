@@ -30,7 +30,8 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         // dd(str_contains($request->url(), 'login'));
-        if (auth()->user()->user_type === 'admin' && str_contains($request->url(), 'admin')) {
+        // if (auth()->user()->user_type === 'admin' && str_contains($request->url(), 'admin')) {
+        if (auth()->user()->user_type === 'admin') {
             return redirect()->intended(RouteServiceProvider::ADMIN_HOME);
         } else {
             return redirect()->intended(RouteServiceProvider::HOME);
