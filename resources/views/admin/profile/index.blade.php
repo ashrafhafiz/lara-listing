@@ -74,11 +74,27 @@
                                     <h4>Edit Profile</h4>
                                 </div>
                                 <div class="card-body">
+                                    <div class="mb-4 form-group row">
+                                        <div class="col-sm-12 col-md-6">
+                                            <label class="col-form-label">Profile Photo</label>
+                                            <div id="image-preview-1" class="image-preview">
+                                                <label for="image-upload-1" id="image-label-1">Choose File</label>
+                                                <input type="file" name="image" id="image-upload-1" />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            <label class="col-form-label">Profile Banner</label>
+                                            <div id="image-preview-2" class="image-preview">
+                                                <label for="image-upload-2" id="image-label-2">Choose File</label>
+                                                <input type="file" name="image" id="image-upload-2" />
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="row">
                                         <div class="form-group col-md-6 col-12">
                                             <label>First Name</label>
                                             <input type="text" class="form-control" value="{{ $user->first_name }}"
-                                                required="">
+                                                name="first_name" required="">
                                             <div class="invalid-feedback">
                                                 Please fill in the first name
                                             </div>
@@ -86,30 +102,75 @@
                                         <div class="form-group col-md-6 col-12">
                                             <label>Last Name</label>
                                             <input type="text" class="form-control" value="{{ $user->last_name }}"
-                                                required="">
+                                                name="last_name" required="">
                                             <div class="invalid-feedback">
                                                 Please fill in the last name
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="row">
                                         <div class="form-group col-md-7 col-12">
                                             <label>Email</label>
                                             <input type="email" class="form-control" value="{{ $user->email }}"
-                                                required="">
+                                                name="email" required="">
                                             <div class="invalid-feedback">
                                                 Please fill in the email
                                             </div>
                                         </div>
                                         <div class="form-group col-md-5 col-12">
-                                            <label>Phone</label>
-                                            <input type="tel" class="form-control" value="{{ $user->phone }}">
+                                            <label>Gender</label>
+                                            <select class="form-control" name="gender" required="">
+                                                <option disabled>Select gender</option>
+                                                <option value="male"
+                                                    {{ $user->gender === 'male' ? ' selected="selected"' : '' }}>
+                                                    Male
+                                                </option>
+                                                <option value="female"
+                                                    {{ $user->gender === 'female' ? ' selected="selected"' : '' }}>
+                                                    Female</option>
+                                            </select>
+
+                                            <div class="invalid-feedback">
+                                                Please fill in the gender
+                                            </div>
                                         </div>
                                     </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-md-6 col-12">
+                                            <label>Phone</label>
+                                            <input type="tel" class="form-control" value="{{ $user->phone }}"
+                                                name="phone">
+                                            {{-- <div class="invalid-feedback">
+                                                Please fill in the phone number
+                                            </div> --}}
+                                        </div>
+                                        <div class="form-group col-md-6 col-12">
+                                            <label>Website</label>
+                                            <input type="text" class="form-control" value="{{ $user->website }}"
+                                                name="website">
+                                            {{-- <div class="invalid-feedback">
+                                                Please fill in the website link
+                                            </div> --}}
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-12">
+                                            <label>Address</label>
+                                            <input type="text" class="form-control" value="{{ $user->address }}"
+                                                name="address">
+                                            {{-- <div class="invalid-feedback">
+                                                Please fill in the address
+                                            </div> --}}
+                                        </div>
+                                    </div>
+
                                     <div class="row">
                                         <div class="form-group col-12">
                                             <label>Bio</label>
-                                            <textarea class="form-control summernote-simple">{{ $user->bio }}</textarea>
+                                            <textarea class="form-control summernote-simple" name="bio">{{ $user->bio }}</textarea>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -137,3 +198,27 @@
         </section>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        $.uploadPreview({
+            input_field: "#image-upload-1", // Default: .image-upload
+            preview_box: "#image-preview-1", // Default: .image-preview
+            label_field: "#image-label-1", // Default: .image-label
+            label_default: "Choose File", // Default: Choose File
+            label_selected: "Change File", // Default: Change File
+            no_label: false, // Default: false
+            success_callback: null, // Default: null
+        });
+
+        $.uploadPreview({
+            input_field: "#image-upload-2", // Default: .image-upload
+            preview_box: "#image-preview-2", // Default: .image-preview
+            label_field: "#image-label-2", // Default: .image-label
+            label_default: "Choose File", // Default: Choose File
+            label_selected: "Change File", // Default: Change File
+            no_label: false, // Default: false
+            success_callback: null, // Default: null
+        });
+    </script>
+@endpush
