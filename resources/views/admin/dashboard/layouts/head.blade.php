@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/modules/fontawesome/css/all.min.css') }}">
 
     <!-- CSS Libraries -->
+    <link rel="stylesheet" href="assets/modules/bootstrap-social/bootstrap-social.css">
     <link rel="stylesheet" href="{{ asset('admin/assets/modules/summernote/summernote-bs4.css') }}">
 
     <!-- Template CSS -->

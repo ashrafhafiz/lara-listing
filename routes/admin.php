@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminAuthController;
+use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -22,5 +23,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Protected Admin Routes
     Route::group(['middleware' => ['auth', 'user.type:admin']], function () {
         Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('dashboard.index');
+
+        Route::get('profile', [AdminProfileController::class, 'index'])->name('profile.index');
+        Route::post('profile', [AdminProfileController::class, 'store'])->name('profile.store');
     });
 });
