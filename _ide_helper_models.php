@@ -84,6 +84,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUserType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereWebsite($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User withTwitter()
  */
 	class User extends \Eloquent {}
 }

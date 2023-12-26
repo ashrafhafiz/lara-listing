@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\ViewErrorBag;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Session;
+use App\Http\Requests\Admin\AdminProfileUpdateRequest;
 
 class AdminProfileController extends Controller
 {
@@ -13,8 +17,9 @@ class AdminProfileController extends Controller
         return view('admin.profile.index', ['user' => auth()->user()]);
     }
 
-    public function store(Request $request)
+    public function update(AdminProfileUpdateRequest $request): RedirectResponse
     {
-        return;
+        toastr()->success('Data has been saved successfully!');
+        return redirect()->back();
     }
 }

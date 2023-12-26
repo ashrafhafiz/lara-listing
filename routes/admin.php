@@ -25,6 +25,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('dashboard.index');
 
         Route::get('profile', [AdminProfileController::class, 'index'])->name('profile.index');
-        Route::post('profile', [AdminProfileController::class, 'store'])->name('profile.store');
+        Route::put('profile', [AdminProfileController::class, 'update'])->name('profile.update');
     });
 });

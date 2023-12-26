@@ -67,9 +67,10 @@
                     </div>
                     <div class="col-12 col-md-12 col-lg-7">
                         <div class="card">
-                            <form method="post" action="{{ route('admin.profile.store') }}" class="needs-validation"
+                            <form method="POST" action="{{ route('admin.profile.update') }}" class="needs-validation"
                                 novalidate="">
                                 @csrf
+                                @method('PUT')
                                 <div class="card-header">
                                     <h4>Edit Profile</h4>
                                 </div>
@@ -79,14 +80,14 @@
                                             <label class="col-form-label">Profile Photo</label>
                                             <div id="image-preview-1" class="image-preview">
                                                 <label for="image-upload-1" id="image-label-1">Choose File</label>
-                                                <input type="file" name="image" id="image-upload-1" />
+                                                <input type="file" name="avatar" id="image-upload-1" />
                                             </div>
                                         </div>
                                         <div class="col-sm-12 col-md-6">
                                             <label class="col-form-label">Profile Banner</label>
                                             <div id="image-preview-2" class="image-preview">
                                                 <label for="image-upload-2" id="image-label-2">Choose File</label>
-                                                <input type="file" name="image" id="image-upload-2" />
+                                                <input type="file" name="profile_banner" id="image-upload-2" />
                                             </div>
                                         </div>
                                     </div>
@@ -122,12 +123,11 @@
                                             <label>Gender</label>
                                             <select class="form-control" name="gender" required="">
                                                 <option disabled>Select gender</option>
-                                                <option value="male"
-                                                    {{ $user->gender === 'male' ? ' selected="selected"' : '' }}>
+                                                <option value="male" {{ $user->gender === 'male' ? ' selected ' : '' }}>
                                                     Male
                                                 </option>
                                                 <option value="female"
-                                                    {{ $user->gender === 'female' ? ' selected="selected"' : '' }}>
+                                                    {{ $user->gender === 'female' ? ' selected ' : '' }}>
                                                     Female</option>
                                             </select>
 
@@ -149,10 +149,18 @@
                                         <div class="form-group col-md-6 col-12">
                                             <label>Website</label>
                                             <input type="text" class="form-control" value="{{ $user->website }}"
-                                                name="website">
-                                            {{-- <div class="invalid-feedback">
+                                                name="website" required>
+                                            <div class="invalid-feedback">
                                                 Please fill in the website link
-                                            </div> --}}
+                                            </div>
+                                            @php
+                                                if ($errors->has('website')) {
+                                                    toastr()->error($errors->first('website'));
+                                                }
+                                            @endphp
+                                            @if ($errors->has('website'))
+                                                <div class="alert alert-danger">{{ $errors->first('website') }}</div>
+                                            @endif
                                         </div>
                                     </div>
 
@@ -173,6 +181,23 @@
                                             <textarea class="form-control summernote-simple" name="bio">{{ $user->bio }}</textarea>
                                         </div>
                                     </div>
+
+                                    <label><strong>Social Media :</strong></label><br>
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label><input type="checkbox" name="social_media_type[]" value="Red">
+                                                Facebook</label>
+                                            <input type="text" class="form-control" name="facebook"
+                                                value="{{ $user->hasFacebook() }}">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label><input type="checkbox" name="social_media_type[]" value="Red">
+                                                Twitter</label>
+                                            <input type="text" class="form-control" name="twitter"
+                                                value="{{ $user->hasTwitter() }}">
+                                        </div>
+                                    </div>
+
                                     <div class="row">
                                         <div class="mb-0 form-group col-12">
                                             <div class="custom-control custom-checkbox">
@@ -181,7 +206,8 @@
                                                 <label class="custom-control-label" for="newsletter">Subscribe to
                                                     newsletter</label>
                                                 <div class="text-muted form-text">
-                                                    You will get new information about products, offers and promotions
+                                                    You will get new information about products, offers and
+                                                    promotions
                                                 </div>
                                             </div>
                                         </div>

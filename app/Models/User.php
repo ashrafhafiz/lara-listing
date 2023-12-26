@@ -70,4 +70,39 @@ class User extends Authenticatable
     {
         return $this->hasMany(SocialMediaSubscription::class, 'user_id');
     }
+
+    public function hasFacebook()
+    {
+        // foreach ($this->social_media_subscriptions as $sms) {
+        //     if ($sms->social_media_type === 'facebook') {
+        //         $result = $sms->social_media_link;
+        //     }
+        // }
+        // return $result;
+        return $this->social_media_subscriptions
+            ->firstWhere('social_media_type', 'facebook')
+            ->social_media_link;
+    }
+
+    public function hasTwitter()
+    {
+        return $this->social_media_subscriptions
+            ->firstWhere('social_media_type', 'twitter')
+            ->social_media_link;
+    }
+
+    public function scopeWithTwitter($query)
+    {
+        return $query->with('social_media_subscriptions')
+            ->whereHas('social_media_subscriptions', function ($q) {
+                $q->where('social_media_type', 'twitter');
+            })->get();
+    }
+
+    public function hasGithub()
+    {
+        return $this->social_media_subscriptions
+            ->firstWhere('social_media_type', 'github')
+            ->social_media_link;
+    }
 }

@@ -70,3 +70,59 @@ Schema::table('users', function (Blueprint $table) {
 ```
 
 ---
+
+Casts only work when you use Eloquent Models to execute the queries. When you use the Query Builder directly, your casts are not executed, so you are trying to bind an array to a MySQL query.
+
+Either manually `json_encode` the value:
+
+```php
+DB::table('cart_product')->insert([
+    ['specification' => \json_encode($request->specification)]
+]);
+
+```
+
+Or use the eloquent model:
+
+```php
+CartProduct::create([
+    'specification' => $request->specification,
+]);
+```
+
+---
+
+#### Construct name attribute using first and last names
+
+#### 1. Define a new accessor in your model.
+
+This will define a new attribute in your model, just like `first_name` or `last_name`. When the new attribute is defined, you can just do `$user->name` to get the attribute.
+
+As the [documentation](https://laravel.com/docs/5.6/eloquent-mutators#defining-an-accessor) says, to define an accessor you need to add a method in your model:
+
+```php
+public  function  getNameAttribute()
+{
+	return  ucfirst($this->first_name) .  ' '  .  ucfirst($this->last_name);
+}
+```
+
+#### 2. Append the attribute to the model
+
+This will make the attribute to be considered just like any other attribute, so whenever a record of the table is called, this attribute will be added to the record.
+
+To accomplish this you'll need to add this new value in the protected `$appends` configuration property of the model, as you can see in the [documentation](https://laravel.com/docs/5.6/eloquent-serialization#appending-values-to-json):
+
+```php
+use Illuminate\Database\Eloquent\Model;
+
+class User extends Model
+{
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['name'];
+}
+```
