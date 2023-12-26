@@ -80,15 +80,13 @@ class User extends Authenticatable
         // }
         // return $result;
         return $this->social_media_subscriptions
-            ->firstWhere('social_media_type', 'facebook')
-            ->social_media_link;
+            ->firstWhere('social_media_type', 'facebook')?->social_media_link;
     }
 
     public function hasTwitter()
     {
         return $this->social_media_subscriptions
-            ->firstWhere('social_media_type', 'twitter')
-            ->social_media_link;
+            ->firstWhere('social_media_type', 'twitter')?->social_media_link;
     }
 
     public function scopeWithTwitter($query)
@@ -102,7 +100,6 @@ class User extends Authenticatable
     public function hasGithub()
     {
         return $this->social_media_subscriptions
-            ->firstWhere('social_media_type', 'github')
-            ->social_media_link;
+            ->firstWhere('social_media_type', 'github')?->social_media_link;
     }
 }

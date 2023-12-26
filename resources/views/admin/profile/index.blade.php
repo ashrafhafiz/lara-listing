@@ -67,8 +67,8 @@
                     </div>
                     <div class="col-12 col-md-12 col-lg-7">
                         <div class="card">
-                            <form method="POST" action="{{ route('admin.profile.update') }}" class="needs-validation"
-                                novalidate="">
+                            <form method="POST" action="{{ route('admin.profile.update') }}" enctype="multipart/form-data"
+                                class="needs-validation" novalidate="">
                                 @csrf
                                 @method('PUT')
                                 <div class="card-header">
@@ -227,6 +227,19 @@
 
 @push('scripts')
     <script>
+        $(document).ready(function() {
+            $('#image-preview-1').css({
+                'background-image': 'url({{ asset($user->avatar) }})',
+                'background-size': 'cover',
+                'background-position': 'center center',
+            });
+            $('#image-preview-2').css({
+                'background-image': 'url({{ asset($user->profile_banner) }})',
+                'background-size': 'cover',
+                'background-position': 'center center',
+            })
+        });
+
         $.uploadPreview({
             input_field: "#image-upload-1", // Default: .image-upload
             preview_box: "#image-preview-1", // Default: .image-preview
