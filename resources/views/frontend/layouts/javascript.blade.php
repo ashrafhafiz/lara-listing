@@ -1,5 +1,6 @@
    <!--jquery library js-->
    <script src="{{ asset('assets/frontend/js/jquery-3.6.0.min.js') }}"></script>
+   {{-- <script src="{{ asset('assets/admin/modules/jquery.min.js') }}"></script> --}}
    <!--bootstrap js-->
    <script src="{{ asset('assets/frontend/js/bootstrap.bundle.min.js') }}"></script>
    <!--font-awesome js-->
@@ -22,3 +23,7 @@
 
    <!--main/custom js-->
    <script src="{{ asset('assets/frontend/js/main.js') }}"></script>
+
+   <script src="{{ asset('assets/admin/modules/upload-preview/assets/js/jquery.uploadPreview.min.js') }}"></script>
+
+   @stack('scripts')

@@ -1,12 +1,15 @@
 <?php
 
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\AdminAuthController;
-use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Frontend\FrontendController;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Frontend\UserProfileController;
+use App\Http\Controllers\Frontend\UserDashboardController;
+use App\Http\Controllers\Frontend\FrontendDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,19 +24,17 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', [FrontendController::class, 'index'])->name('index');
 
-Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('login', [AdminAuthController::class, 'login'])->name('login');
-    Route::get('dashboard', [AdminDashboardController::class, 'index'])->middleware('user.type:admin')->name('dashboard.index');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::middleware(['auth', 'verified'])->prefix('user')->name('user.')->group(function () {
+    Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard.index');
+    Route::get('/profile', [UserProfileController::class, 'profileEdit'])->name('profile.edit');
+    Route::put('/profile', [UserProfileController::class, 'profileUpdate'])->name('profile.update');
+    Route::put('/password-update', [UserProfileController::class, 'passwordUpdate'])->name('password.update');
 });
 
 require __DIR__ . '/auth.php';

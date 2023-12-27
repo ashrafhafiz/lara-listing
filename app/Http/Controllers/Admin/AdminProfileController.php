@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Traits\FileUploadTrait;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
+use App\Traits\FileUploadTrait;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\Admin\AdminProfileUpdateRequest;
+use App\Http\Requests\Admin\AdminPasswordUpdateRequest;
 
 class AdminProfileController extends Controller
 {
@@ -20,17 +23,19 @@ class AdminProfileController extends Controller
 
     public function update(AdminProfileUpdateRequest $request): RedirectResponse
     {
-        $avatarPath = $this->uploadImage($request, 'avatar');
-        $bannerPath = $this->uploadImage($request, 'profile_banner');
-
+        // $user = Auth::user();
         $user = $request->user();
+
+        $avatarPath = $this->uploadImage($request, 'avatar', $user->avatar);
+        $bannerPath = $this->uploadImage($request, 'profile_banner', $user->profile_banner);
+
         // $user->avatar = !empty($avatarPath) ? $avatarPath : '';
-        // $user->profile_banner = !empty($bannerPath) ? $bannerPath  : '';
         if (!empty($avatarPath)) {
             $user->avatar = $avatarPath;
         }
+        // $user->profile_banner = !empty($bannerPath) ? $bannerPath  : '';
         if (!empty($bannerPath)) {
-            $user->avatar = $bannerPath;
+            $user->profile_banner = $bannerPath;
         }
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
@@ -42,8 +47,17 @@ class AdminProfileController extends Controller
 
         $user->save();
 
-        // dd($avatarPath, $bannerPath);
         toastr()->success('Data has been saved successfully!');
+        return redirect()->back();
+    }
+
+    public function passwordUpdate(AdminPasswordUpdateRequest $request)
+    {
+        $user = $request->user();
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        toastr()->success('Password has been updated successfully!');
         return redirect()->back();
     }
 }

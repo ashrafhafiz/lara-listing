@@ -16,4 +16,10 @@
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/responsive.css') }}">
     <!-- <link rel="stylesheet" href="{{ asset('assets/frontend/css/rtl.css') }}"> -->
+    <style>
+        .select2 span {
+            font-size: 14px !important;
+            font-weight: 400 !important;
+        }
+    </style>
 </head>

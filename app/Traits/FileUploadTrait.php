@@ -17,7 +17,7 @@ trait FileUploadTrait   // comment
             $uploadedImage->move(public_path($path), $storedImageName);
 
             // Delete previous image
-            if ($oldPath && File::exists(public_path($oldPath))) {
+            if ($oldPath && File::exists(public_path($oldPath)) && !str_contains($oldPath, '/default')) {
                 File::delete(public_path($oldPath));
             }
 
