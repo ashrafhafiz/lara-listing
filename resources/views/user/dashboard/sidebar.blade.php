@@ -14,6 +14,13 @@
         <li><a href="dsahboard_order.html"><i class="fal fa-notes-medical"></i> Orders</a></li>
         <li><a href="dsahboard_package.html"><i class="fal fa-gift-card"></i> Package</a></li>
         <li><a href="dsahboard_message.html"><i class="far fa-comments-alt"></i> Message</a></li>
-        <li><a href="#"><i class="far fa-sign-out-alt"></i> Logo</a></li>
+
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <li><a href="{{ route('logout') }}" onclick="event.preventDefault();this.closest('form').submit();"><i
+                        class="far fa-sign-out-alt"></i> Logout</a></li>
+        </form>
+
+
     </ul>
 </div>

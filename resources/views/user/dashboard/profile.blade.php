@@ -15,111 +15,124 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="row">
-                                    <div class="col-xl-8 col-md-12">
-                                        <div class="row">
-                                            <div class="col-xl-6 col-md-6">
-                                                <div class="my_listing_single">
-                                                    <label>First Name</label>
-                                                    <div class="input_area">
-                                                        <input type="text" placeholder="First Name" name="first_name"
-                                                            value="{{ $user->first_name }}">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-6 col-md-6">
-                                                <div class="my_listing_single">
-                                                    <label>Last Name</label>
-                                                    <div class="input_area">
-                                                        <input type="text" placeholder="Last Name" name="last_name"
-                                                            value="{{ $user->last_name }}">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xl-8 col-md-8">
-                                                <div class="my_listing_single">
-                                                    <label>email</label>
-                                                    <div class="input_area">
-                                                        <input type="Email" placeholder="Email" name="email"
-                                                            value="{{ $user->email }}">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-4 col-md-4">
-                                                <div class="my_listing_single">
-                                                    <label>Gender</label>
-                                                    <div class="input_area">
-                                                        <div class="wsus__search_area">
-                                                            <select class="select_2" name="gender" required="">
-                                                                <option disabled>Select gender</option>
-                                                                <option value="male"
-                                                                    {{ $user->gender === 'male' ? ' selected ' : '' }}>
-                                                                    Male
-                                                                </option>
-                                                                <option value="female"
-                                                                    {{ $user->gender === 'female' ? ' selected ' : '' }}>
-                                                                    Female</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xl-6 col-md-6">
-                                                <div class="my_listing_single">
-                                                    <label>phone</label>
-                                                    <div class="input_area">
-                                                        <input type="text" placeholder="1234...." name="hone"
-                                                            value="{{ $user->phone }}">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-6 col-md-6">
-                                                <div class="my_listing_single">
-                                                    <label>Website</label>
-                                                    <div class="input_area">
-                                                        <input type="text" placeholder="http://...." name="website"
-                                                            value="{{ $user->website }}">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xl-12 col-md-12">
-                                                <div class="my_listing_single">
-                                                    <label>address</label>
-                                                    <div class="input_area">
-                                                        <input type="text" placeholder="Address" name="address"
-                                                            value="{{ $user->address }}">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-xl-12">
-                                                <div class="my_listing_single">
-                                                    <label>About Me</label>
-                                                    <div class="input_area">
-                                                        <textarea cols="3" rows="3" placeholder="Your Text" name="bio">{{ $user->bio }}</textarea>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-xl-4 col-md-5">
+                                    <div class="col-xl-4 col-md-6">
                                         <div class="my_listing_single">
+                                            <label>Profile Avatar</label>
                                             <div id="image-preview-1" class="profile_pic_upload">
-                                                <img id="preview1" src="#" alt="img"
-                                                    class="imf-fluid w-100 h-100"
-                                                    style="display:none; object-fit: fill !important;">
-                                                <input type="file" id="selectImage1">
+                                                <img id="preview1" src="#" alt="img" class="imf-fluid w-100"
+                                                    style="display:none;">
+                                                <input type="file" id="selectImage1" name="avatar">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-md-6">
+                                        <div class="my_listing_single">
+                                            <label>Profile Banner</label>
+                                            <div id="image-preview-2" class="profile_pic_upload banner_pic_upload">
+                                                <img id="preview2" src="#" alt="img" class="imf-fluid w-100"
+                                                    style="display:none;">
+                                                <input type="file" id="selectImage2" name="profile_banner">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="row">
+                                    <div class="col-xl-5 col-md-5">
+                                        <div class="my_listing_single">
+                                            <label>First Name</label>
+                                            <div class="input_area">
+                                                <input type="text" placeholder="First Name" name="first_name"
+                                                    value="{{ $user->first_name }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-5 col-md-5">
+                                        <div class="my_listing_single">
+                                            <label>Last Name</label>
+                                            <div class="input_area">
+                                                <input type="text" placeholder="Last Name" name="last_name"
+                                                    value="{{ $user->last_name }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xl-7 col-md-7">
+                                        <div class="my_listing_single">
+                                            <label>email</label>
+                                            <div class="input_area">
+                                                <input type="Email" placeholder="Email" name="email"
+                                                    value="{{ $user->email }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3 col-md-3">
+                                        <div class="my_listing_single">
+                                            <label>Gender</label>
+                                            <div class="input_area">
+                                                <div class="wsus__search_area">
+                                                    <select class="select_2" name="gender" required="">
+                                                        <option disabled>Select gender</option>
+                                                        <option value="male"
+                                                            {{ $user->gender === 'male' ? ' selected ' : '' }}>
+                                                            Male
+                                                        </option>
+                                                        <option value="female"
+                                                            {{ $user->gender === 'female' ? ' selected ' : '' }}>
+                                                            Female</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xl-5 col-md-5">
+                                        <div class="my_listing_single">
+                                            <label>phone</label>
+                                            <div class="input_area">
+                                                <input type="text" placeholder="1234...." name="phone"
+                                                    value="{{ $user->phone }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-5 col-md-5">
+                                        <div class="my_listing_single">
+                                            <label>Website</label>
+                                            <div class="input_area">
+                                                <input type="text" placeholder="http://...." name="website"
+                                                    value="{{ $user->website }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xl-10 col-md-10">
+                                        <div class="my_listing_single">
+                                            <label>address</label>
+                                            <div class="input_area">
+                                                <input type="text" placeholder="Address" name="address"
+                                                    value="{{ $user->address }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xl-10 col-md-10">
+                                        <div class="my_listing_single">
+                                            <label>About Me</label>
+                                            <div class="input_area">
+                                                <textarea cols="3" rows="3" placeholder="Your Text" name="bio">{{ $user->bio }}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div id="medicine_row3">
                                     <div class="row">
                                         <div class="col-xl-5 col-md-5">
@@ -147,7 +160,7 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="my_listing list_mar">
+                        <div class="my_listing list_mar" style="background-color: cornsilk;">
                             <h4>change password</h4>
                             <form method="POST" action="{{ route('user.password.update') }}"
                                 enctype="multipart/form-data">
@@ -158,7 +171,20 @@
                                         <div class="my_listing_single">
                                             <label>current password</label>
                                             <div class="input_area">
-                                                <input type="password" placeholder="Current Password">
+                                                <input type="password" placeholder="Current Password"
+                                                    name="current_password">
+                                                <div class="invalid-feedback">
+                                                    Please fill in the current password
+                                                </div>
+                                                @php
+                                                    if ($errors->has('current_password')) {
+                                                        toastr()->error($errors->first('current_password'));
+                                                    }
+                                                @endphp
+                                                @if ($errors->has('current_password'))
+                                                    <div class="alert alert-danger">
+                                                        {{ $errors->first('current_password') }}</div>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -166,7 +192,18 @@
                                         <div class="my_listing_single">
                                             <label>new password</label>
                                             <div class="input_area">
-                                                <input type="password" placeholder="New Password">
+                                                <input type="password" placeholder="New Password" name="password">
+                                                <div class="invalid-feedback">
+                                                    Please fill in the password
+                                                </div>
+                                                @php
+                                                    if ($errors->has('password')) {
+                                                        toastr()->error($errors->first('password'));
+                                                    }
+                                                @endphp
+                                                @if ($errors->has('password'))
+                                                    <div class="alert alert-danger">{{ $errors->first('password') }}</div>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -174,7 +211,20 @@
                                         <div class="my_listing_single">
                                             <label>confirm password</label>
                                             <div class="input_area">
-                                                <input type="password" placeholder="Confirm Password">
+                                                <input type="password" placeholder="Confirm Password"
+                                                    name="password_confirmation">
+                                                <div class="invalid-feedback">
+                                                    Please fill in the password confirmation
+                                                </div>
+                                                @php
+                                                    if ($errors->has('password_confirmation')) {
+                                                        toastr()->error($errors->first('password_confirmation'));
+                                                    }
+                                                @endphp
+                                                @if ($errors->has('password_confirmation'))
+                                                    <div class="alert alert-danger">
+                                                        {{ $errors->first('password_confirmation') }}</div>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -186,26 +236,7 @@
                         </div>
 
                         <div class="my_listing list_mar">
-                            <form method="POST" action="{{ route('user.profile.update') }}"
-                                enctype="multipart/form-data">
-                                @csrf
-                                @method('PUT')
-                                <h4>Profile Banner Image</h4>
-                                <div class="row">
-                                    <div class="col-xl-6 col-md-8 col-lg-6">
-                                        <div class="my_listing_single">
-                                            <div id="image-preview-2" class="profile_pic_upload banner_pic_upload">
-                                                <img id="preview2" src="#" alt="img"
-                                                    class="imf-fluid w-100 h-100" style="display:none;">
-                                                <input type="file" id="selectImage2">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <button type="submit" class="read_btn">upload</button>
-                                    </div>
-                                </div>
-                            </form>
+
                         </div>
                     </div>
                 </div>

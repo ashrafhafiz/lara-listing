@@ -7,8 +7,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Admin\AdminDashboardController;
-use App\Http\Controllers\Frontend\UserProfileController;
-use App\Http\Controllers\Frontend\UserDashboardController;
+use App\Http\Controllers\User\UserProfileController;
+use App\Http\Controllers\User\UserDashboardController;
 use App\Http\Controllers\Frontend\FrontendDashboardController;
 
 /*
