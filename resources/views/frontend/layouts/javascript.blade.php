@@ -21,6 +21,15 @@
    <!--select js-->
    <script src="{{ asset('assets/frontend/js/jquery.nice-select.min.js') }}"></script>
 
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+   <script>
+       @if ($errors->any())
+           @foreach ($errors->all() as $error)
+               toastr.error("{{ $error }}");
+           @endforeach
+       @endif
+   </script>
+
    <!--main/custom js-->
    <script src="{{ asset('assets/frontend/js/main.js') }}"></script>
 

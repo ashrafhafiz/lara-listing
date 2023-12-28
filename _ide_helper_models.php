@@ -12,6 +12,32 @@
 
 namespace App\Models{
 /**
+ * App\Models\Hero
+ *
+ * @property int $id
+ * @property string $bg_img
+ * @property string $title
+ * @property string|null $subtitle
+ * @property int $active
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Hero latestActive()
+ * @method static \Illuminate\Database\Eloquent\Builder|Hero newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Hero newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Hero query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Hero whereActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Hero whereBgImg($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Hero whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Hero whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Hero whereSubtitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Hero whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Hero whereUpdatedAt($value)
+ */
+	class Hero extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\SocialMediaSubscription
  *
  * @property int $id

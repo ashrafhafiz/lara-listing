@@ -7,27 +7,30 @@
             <a href="index.html">St</a>
         </div>
         <ul class="sidebar-menu">
-            <li class="menu-header">Dashboard</li>
-            <li class="dropdown active">
-                <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
-                <ul class="dropdown-menu">
-                    <li class="active"><a class="nav-link" href="/admin/dashboard">General Dashboard</a></li>
-                    <li><a class="nav-link" href="/admin/dashboard">Ecommerce Dashboard</a></li>
-                </ul>
+            <li class="{{ active_class(['admin/dashboard']) }}">
+                <a class="nav-link" href="{{ route('admin.dashboard.index') }}">
+                    <i class="far fa-square"></i>
+                    <span>Dashboard</span>
+                </a>
             </li>
             <li class="menu-header">Starter</li>
-            <li class="dropdown">
+            <li class="dropdown {{ active_class(['admin/sections/*']) }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
-                    <span>Layout</span></a>
+                    <span>Sections</span></a>
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="#">Default Layout</a></li>
-                    <li><a class="nav-link" href="#">Transparent Sidebar</a></li>
-                    <li><a class="nav-link" href="#">Top Navigation</a></li>
+                    <li class="{{ active_class(['admin/sections/hero']) }}">
+                        <a class="nav-link" href="{{ route('admin.hero.index') }}">Hero</a>
+                    </li>
+                    <li><a class="nav-link" href="#">Another</a></li>
+                    <li><a class="nav-link" href="#">Something</a></li>
                 </ul>
             </li>
-            <li><a class="nav-link" href="{{ route('admin.dashboard.index') }}"><i class="far fa-square"></i>
-                    <span>Blank
-                        Page</span></a></li>
+            <li>
+                <a class="nav-link" href="{{ route('admin.dashboard.index') }}">
+                    <i class="far fa-square"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
             <li class="dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i>
                     <span>Bootstrap</span></a>

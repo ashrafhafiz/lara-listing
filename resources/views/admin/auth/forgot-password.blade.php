@@ -18,6 +18,9 @@
 
             <div class="card-body">
                 <p class="text-muted">We will send a link to reset your password</p>
+                @if (session('status'))
+                    <div class="alert alert-success">{{ session('status') }}</div>
+                @endif
                 <form method="POST" action="{{ route('admin.password.email') }}">
                     @csrf
                     <div class="form-group">

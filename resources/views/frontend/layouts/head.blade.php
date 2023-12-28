@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/summernote.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/nice-select.css') }}">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/frontend/css/responsive.css') }}">
     <!-- <link rel="stylesheet" href="{{ asset('assets/frontend/css/rtl.css') }}"> -->

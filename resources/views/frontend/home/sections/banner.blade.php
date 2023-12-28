@@ -4,7 +4,7 @@
             <div class="row justify-content-between">
                 <div class="col-xl-6 col-lg-7">
                     <div class="wsus__banner_text">
-                        <h1>Let us help you Find Buy & Own Dreams</h1>
+                        <h1>{{ $latestHero->title }}</h1>
                         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos quasi facilis, cupiditate
                             rem voluptates omnis repellat consectetur nihil quod a, illo nemo eveniet iste, minima
                             delectus doloribus! Praesentium, maiores iusto? </p>
@@ -46,3 +46,14 @@
         </div>
     </div>
 </section>
+
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#wsus__banner').css({
+                'background-image': 'url({{ asset($latestHero->bg_img) }})',
+            });
+        });
+    </script>
+@endpush
