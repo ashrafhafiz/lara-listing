@@ -19,17 +19,22 @@
                     <span>Sections</span></a>
                 <ul class="dropdown-menu">
                     <li class="{{ active_class(['admin/sections/hero']) }}">
-                        <a class="nav-link" href="{{ route('admin.hero.index') }}">Hero</a>
+                        <a class="nav-link" href="{{ route('admin.sections.hero.index') }}">Hero</a>
                     </li>
                     <li><a class="nav-link" href="#">Another</a></li>
                     <li><a class="nav-link" href="#">Something</a></li>
                 </ul>
             </li>
-            <li>
-                <a class="nav-link" href="{{ route('admin.dashboard.index') }}">
-                    <i class="far fa-square"></i>
-                    <span>Dashboard</span>
-                </a>
+            <li class="dropdown {{ active_class(['admin/listings/*']) }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i>
+                    <span>Listings</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ active_class(['admin/listings/category']) }}">
+                        <a class="nav-link" href="{{ route('admin.category.index') }}">Category</a>
+                    </li>
+                    <li><a class="nav-link" href="#">Another</a></li>
+                    <li><a class="nav-link" href="#">Something</a></li>
+                </ul>
             </li>
             <li class="dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i>

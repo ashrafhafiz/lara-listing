@@ -9,8 +9,8 @@
                 </div>
                 <h1>Hero Section</h1>
                 <div class="section-header-breadcrumb">
-                    <div class="breadcrumb-item active"><a href="{{ route('admin.dashboard.index') }}">Dashboard</a></div>
-                    <div class="breadcrumb-item">Hero Section</div>
+                    <div class="breadcrumb-item"><a href="{{ route('admin.dashboard.index') }}">Dashboard</a></div>
+                    <div class="breadcrumb-item active">Hero Section</div>
                 </div>
             </div>
 
@@ -18,7 +18,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <form method="POST" action="{{ route('admin.hero.store', $hero) }}"
+                            <form method="POST" action="{{ route('admin.sections.hero.store', $hero) }}"
                                 enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
@@ -31,7 +31,7 @@
                                         <div class="col-sm-12 col-md-6">
                                             <label for="bg_img" class="col-form-label">Background Image</label>
                                             <div id="bg_img-preview" class="image-preview" style="width: 500px !important;">
-                                                <label for="bg_img" id="bg_img-label">Choose File</label>
+                                                <label for="bg_img-upload" id="bg_img-label">Choose File</label>
                                                 <input type="file" name="bg_img" id="bg_img-upload" />
                                             </div>
                                         </div>
@@ -40,7 +40,7 @@
                                     <div class="mb-4 form-group row">
                                         <div class="col-sm-12 col-md-6">
                                             <label for="title" class="col-form-label">Title</label>
-                                            <input type="tel" class="form-control" value="{{ $hero->title }}"
+                                            <input type="text" class="form-control" value="{{ $hero->title }}"
                                                 name="title">
                                             <div class="invalid-feedback">
                                                 Please fill in the title

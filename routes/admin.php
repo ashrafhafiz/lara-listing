@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\Dashboard\CategoryController;
 use App\Http\Controllers\Admin\Dashboard\HeroSectionController;
 
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -31,7 +32,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::put('profile', [AdminProfileController::class, 'update'])->name('profile.update');
         Route::put('password-update', [AdminProfileController::class, 'passwordUpdate'])->name('password.update');
 
-        Route::get('sections/hero', [HeroSectionController::class, 'index'])->name('hero.index');
-        Route::put('sections/hero', [HeroSectionController::class, 'store'])->name('hero.store');
+        Route::get('sections/hero', [HeroSectionController::class, 'index'])->name('sections.hero.index');
+        Route::put('sections/hero', [HeroSectionController::class, 'store'])->name('sections.hero.store');
+
+        Route::resource('listings/category', CategoryController::class);
     });
 });
