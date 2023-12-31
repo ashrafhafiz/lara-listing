@@ -87,9 +87,21 @@ class AmenityController extends Controller
      */
     public function destroy(string $id)
     {
-        $amenity = Amenity::findOrFail($id);
-        $amenity->delete();
+        try {
+            $amenity = Amenity::findOrFail($id);
+            $amenity->delete();
 
-        return response(['status' => 'success', 'message' => 'Amenity has been deleted successfully.']);
+            return response([
+                'status' => 'success',
+                'message' => 'Amenity has been deleted successfully.',
+            ]);
+        } catch (\Exception $e) {
+            logger($e);
+
+            return response([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ]);
+        }
     }
 }

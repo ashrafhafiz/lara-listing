@@ -93,15 +93,5 @@
                 $('#amenity-slug').val(slug($(this).val()));
             });
         });
-
-        $.uploadPreview({
-            input_field: "#amenity_icon_img-upload", // Default: .image-upload
-            preview_box: "#amenity_icon_img-preview", // Default: .image-preview
-            label_field: "#amenity_icon_img-label", // Default: .image-label
-            label_default: "Choose File", // Default: Choose File
-            label_selected: "Change File", // Default: Change File
-            no_label: false, // Default: false
-            success_callback: null, // Default: null
-        });
     </script>
 @endpush

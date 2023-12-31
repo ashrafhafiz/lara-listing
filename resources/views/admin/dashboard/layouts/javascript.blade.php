@@ -90,6 +90,12 @@
                                 icon: "success"
                             }).then(() => window.location.reload())
 
+                        } else if (response.status === 'error') {
+                            Swal.fire({
+                                title: "Ops!",
+                                text: response.message,
+                                icon: "error"
+                            }).then(() => window.location.reload())
                         }
                     },
                     error: function(xhr, status, error) {
