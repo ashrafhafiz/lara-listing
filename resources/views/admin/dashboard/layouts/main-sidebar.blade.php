@@ -32,8 +32,12 @@
                     <li class="{{ active_class(['admin/listings/category']) }}">
                         <a class="nav-link" href="{{ route('admin.category.index') }}">Category</a>
                     </li>
-                    <li><a class="nav-link" href="#">Another</a></li>
-                    <li><a class="nav-link" href="#">Something</a></li>
+                    <li class="{{ active_class(['admin/listings/location']) }}">
+                        <a class="nav-link" href="{{ route('admin.location.index') }}">Location</a>
+                    </li>
+                    <li class="{{ active_class(['admin/listings/amenity']) }}">
+                        <a class="nav-link" href="{{ route('admin.amenity.index') }}">Amenities</a>
+                    </li>
                 </ul>
             </li>
             <li class="dropdown">

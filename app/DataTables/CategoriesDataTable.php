@@ -25,13 +25,26 @@ class CategoriesDataTable extends DataTable
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($query) {
                 return '<div class="d-flex"><a href="' . route('admin.category.edit', $query->id) . '" class="btn btn-info btn-sm"><i class="far fa-edit"></i></a>
-                <a href="" class="ml-2 btn btn-danger btn-sm" id="swal-6"><i class="far fa-trash-alt"></i></a></div>';
+                <a href="' . route('admin.category.destroy', $query->id) . '" class="ml-2 btn btn-danger btn-sm" id="delete-item"><i class="far fa-trash-alt"></i></a></div>';
             })
             ->addColumn('icon', function ($query) {
                 return '<img src="' . asset($query->icon_img) . '" alt="icon ' . $query->name . '">';
             })
             ->addColumn('background', function ($query) {
                 return '<img src="' . asset($query->bg_img) . '" alt="bg ' . $query->name . '" width=200>';
+            })
+            ->addColumn('show_at_home', function ($query) {
+                return '<label><input type="checkbox" name="show_at_home" ' . ($query->show_at_home === 1 ? 'checked' : '') . ' disabled class="custom-switch-input">
+                <span class="custom-switch-indicator"></span></label>';
+            })
+            ->addColumn('status', function ($query) {
+                // if ($query->status === 1) {
+                //     return "<span class='badge badge-primary badge-pill'>Active</span>";
+                // } else {
+                //     return "<span class='badge badge-danger badge-pill'>Inactive</span>";
+                // }
+                return '<label><input type="checkbox" name="status" ' . ($query->status === 1 ? 'checked' : '') . ' disabled class="custom-switch-input">
+                <span class="custom-switch-indicator"></span></label>';
             })
             ->editColumn('created_at', function ($query) {
                 $formatedDate = Carbon::createFromFormat('Y-m-d H:i:s', $query->created_at)->format('d-m-Y');
@@ -41,7 +54,7 @@ class CategoriesDataTable extends DataTable
                 // return Carbon::parse($query->updated_at)->diffForHumans();
                 return $query->updated_at->diffForHumans();
             })
-            ->rawColumns(['action', 'icon', 'background'])
+            ->rawColumns(['action', 'icon', 'background', 'show_at_home', 'status'])
             ->setRowId('id');
     }
 

@@ -7,12 +7,11 @@
                 <div class="section-header-back">
                     <a href="{{ route('admin.category.index') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
                 </div>
-                <h1>Create category</h1>
+                <h1>Update Category</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item"><a href="{{ route('admin.dashboard.index') }}">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="{{ route('admin.category.index') }}">Categories</a>
-                    </div>
-                    <div class="breadcrumb-item">Create Category</div>
+                    <div class="breadcrumb-item"><a href="{{ route('admin.category.index') }}">Categories</a></div>
+                    <div class="breadcrumb-item">Update Category</div>
                 </div>
             </div>
 
@@ -25,7 +24,7 @@
                                 @csrf
                                 @method('put')
                                 <div class="card-header">
-                                    <h4>Create a New category</h4>
+                                    <h4>Edit Category</h4>
                                     <div class="card-header-action">
                                         <a href="{{ route('admin.category.index') }}" class="btn btn-primary">Cancel</a>
                                     </div>

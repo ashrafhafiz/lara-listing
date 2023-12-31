@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\Dashboard\AmenityController;
 use App\Http\Controllers\Admin\Dashboard\CategoryController;
+use App\Http\Controllers\Admin\Dashboard\LocationController;
 use App\Http\Controllers\Admin\Dashboard\HeroSectionController;
 
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -36,5 +38,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::put('sections/hero', [HeroSectionController::class, 'store'])->name('sections.hero.store');
 
         Route::resource('listings/category', CategoryController::class);
+        Route::resource('listings/location', LocationController::class);
+        Route::resource('listings/amenity', AmenityController::class);
     });
 });

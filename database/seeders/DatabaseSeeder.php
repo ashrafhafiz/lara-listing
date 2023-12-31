@@ -23,5 +23,7 @@ class DatabaseSeeder extends Seeder
             UserTableSeeder::class,
             SocialMediaSubscriptionSeeder::class
         ]);
+        $this->call(CustomizedLocationsTableSeeder::class);
+        $this->call(CustomizedAmenitiesTableSeeder::class);
     }
 }

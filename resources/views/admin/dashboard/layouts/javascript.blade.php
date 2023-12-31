@@ -14,6 +14,10 @@
 <script src="{{ asset('assets/admin/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js') }}"></script>
 {{-- <script src="{{ asset('assets/admin/modules/sweetalert/sweetalert.min.js') }}"></script> --}}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Bootstrap-Iconpicker Bundle -->
+<script type="text/javascript"
+    src="{{ asset('assets/admin/modules/bootstrap-iconpicker-1.10.0/dist/js/bootstrap-iconpicker.bundle.min.js') }}">
+</script>
 
 
 <!-- Page Specific JS File -->
@@ -28,6 +32,7 @@
 <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap4.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 <script>
     @if ($errors->any())
         @foreach ($errors->all() as $error)
@@ -35,6 +40,7 @@
         @endforeach
     @endif
 </script>
+
 <script>
     // $("body").on('click', '#swal-6', function(e) {
     //     e.preventDefault();
@@ -57,25 +63,43 @@
     // });
 
     // Sweetalert 2
-    $("body").on('click', '#swal-6', function(e) {
+    $("body").on('click', '#delete-item', function(e) {
         e.preventDefault();
+        console.log($(this).attr('href'));
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
             icon: "warning",
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
+            // confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                Swal.fire({
-                    title: "Deleted!",
-                    text: "Your file has been deleted.",
-                    icon: "success"
+                $.ajax({
+                    method: 'DELETE',
+                    url: $(this).attr('href'),
+                    data: {
+                        _token: "{{ csrf_token() }}"
+                    },
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: response.message,
+                                icon: "success"
+                            }).then(() => window.location.reload())
+
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(error)
+                    },
                 });
+
             }
         });
     });
 </script>
+
 @stack('scripts')

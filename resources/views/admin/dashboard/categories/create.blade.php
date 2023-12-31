@@ -10,8 +10,7 @@
                 <h1>Create category</h1>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item"><a href="{{ route('admin.dashboard.index') }}">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="{{ route('admin.category.index') }}">Categories</a>
-                    </div>
+                    <div class="breadcrumb-item"><a href="{{ route('admin.category.index') }}">Categories</a></div>
                     <div class="breadcrumb-item">Create Category</div>
                 </div>
             </div>

@@ -113,6 +113,12 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // dd($id);
+        $category = Category::findOrFail($id);
+        $this->deleteImage($category->icon_img);
+        $this->deleteImage($category->bg_img);
+        $category->delete();
+
+        return response(['status' => 'success', 'message' => 'Category has been deleted successfully.']);
     }
 }
