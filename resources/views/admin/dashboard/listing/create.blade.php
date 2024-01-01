@@ -102,8 +102,8 @@
                                         </div>
                                         <div class="col-sm-12 col-md-6">
                                             <label>Amenities</label>
-                                            <select class="form-control select2 js-placeholder-multiple" name="amenity_id[]"
-                                                multiple="multiple">
+                                            <select class="form-control select2 js-placeholder-multiple"
+                                                name="amenities_id[]" multiple="multiple">
                                                 {{-- <option value="" disabled hidden>Select amenities...</option> --}}
                                                 @foreach ($amenities as $amenity)
                                                     <option id="{{ $amenity->id }}" value="{{ $amenity->id }}">
@@ -269,6 +269,26 @@
             $(".js-placeholder-multiple").select2({
                 placeholder: "Select amenities"
             });
+        });
+
+        $.uploadPreview({
+            input_field: "#image-upload", // Default: .image-upload
+            preview_box: "#image-preview", // Default: .image-preview
+            label_field: "#image-label", // Default: .image-label
+            label_default: "Choose File", // Default: Choose File
+            label_selected: "Change File", // Default: Change File
+            no_label: false, // Default: false
+            success_callback: null, // Default: null
+        });
+
+        $.uploadPreview({
+            input_field: "#thumbnail-upload", // Default: .image-upload
+            preview_box: "#thumbnail-preview", // Default: .image-preview
+            label_field: "#thumbnail-label", // Default: .image-label
+            label_default: "Choose File", // Default: Choose File
+            label_selected: "Change File", // Default: Change File
+            no_label: false, // Default: false
+            success_callback: null, // Default: null
         });
     </script>
 @endpush

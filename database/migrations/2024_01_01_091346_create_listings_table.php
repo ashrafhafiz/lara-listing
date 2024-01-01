@@ -42,7 +42,7 @@ return new class extends Migration
             $table->boolean('is_verified')->default(0);
             $table->boolean('is_featured')->default(0);
             $table->integer('views')->default(0);
-            $table->text('goggle_map_embed_code')->nullable();
+            $table->text('google_map_embed_code')->nullable();
             $table->string('attachement')->nullable();
             $table->boolean('status')->default(1);
             $table->date('expire_at');

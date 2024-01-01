@@ -25,5 +25,7 @@ class DatabaseSeeder extends Seeder
         ]);
         $this->call(CustomizedLocationsTableSeeder::class);
         $this->call(CustomizedAmenitiesTableSeeder::class);
+        $this->call(CustomizedListingsTableSeeder::class);
+        $this->call(CustomizedAmenityListingTableSeeder::class);
     }
 }
