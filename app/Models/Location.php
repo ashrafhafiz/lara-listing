@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Location extends Model
 {
     use HasFactory;
+
+    public function scopeActiveLocations($query)
+    {
+        return $query->where('status', 1)->get();
+    }
 }

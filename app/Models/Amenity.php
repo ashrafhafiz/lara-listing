@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Amenity extends Model
 {
     use HasFactory;
+
+    public function scopeActiveAmenities($query)
+    {
+        return $query->where('status', 1)->get();
+    }
 }

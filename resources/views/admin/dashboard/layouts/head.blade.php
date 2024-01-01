@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="{{ asset('assets/admin/modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/modules/bootstrap-social/bootstrap-social.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/admin/modules/select2/dist/css/select2.min.css') }}">
+
     <!-- Bootstrap-Iconpicker -->
     <link rel="stylesheet"
         href="{{ asset('assets/admin/modules/bootstrap-iconpicker-1.10.0/dist/css/bootstrap-iconpicker.min.css') }}" />

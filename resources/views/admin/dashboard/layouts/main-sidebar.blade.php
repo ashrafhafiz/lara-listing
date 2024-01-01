@@ -38,6 +38,9 @@
                     <li class="{{ active_class(['admin/listings/amenity']) }}">
                         <a class="nav-link" href="{{ route('admin.amenity.index') }}">Amenities</a>
                     </li>
+                    <li class="{{ active_class(['admin/listings/listing']) }}">
+                        <a class="nav-link" href="{{ route('admin.listing.index') }}">Listing</a>
+                    </li>
                 </ul>
             </li>
             <li class="dropdown">

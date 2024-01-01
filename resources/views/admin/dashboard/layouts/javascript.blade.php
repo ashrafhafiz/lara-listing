@@ -18,6 +18,8 @@
 <script type="text/javascript"
     src="{{ asset('assets/admin/modules/bootstrap-iconpicker-1.10.0/dist/js/bootstrap-iconpicker.bundle.min.js') }}">
 </script>
+<script src="{{ asset('assets/admin/modules/select2/dist/js/select2.full.min.js') }}"></script>
+
 
 
 <!-- Page Specific JS File -->

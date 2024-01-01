@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\Dashboard\AmenityController;
 use App\Http\Controllers\Admin\Dashboard\CategoryController;
 use App\Http\Controllers\Admin\Dashboard\LocationController;
 use App\Http\Controllers\Admin\Dashboard\HeroSectionController;
+use App\Http\Controllers\Admin\Dashboard\ListingController;
 
 Route::prefix('admin')->name('admin.')->group(function () {
 
@@ -40,5 +41,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('listings/category', CategoryController::class);
         Route::resource('listings/location', LocationController::class);
         Route::resource('listings/amenity', AmenityController::class);
+        Route::resource('listings/listing', ListingController::class);
     });
 });
