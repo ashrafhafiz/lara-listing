@@ -26,8 +26,20 @@ class ListingDataTable extends DataTable
             ->addColumn('action', function ($query) {
                 return '
                 <div class="d-flex">
-                    <a href="' . route('admin.amenity.edit', $query->id) . '" class="btn btn-info btn-sm"><i class="far fa-edit"></i></a>
-                    <a href="' . route('admin.amenity.destroy', $query->id) . '" class="ml-2 btn btn-danger btn-sm" id="delete-item"><i class="far fa-trash-alt"></i></a>
+                    <a href="' . route('admin.listing.edit', $query->id) . '" class="btn btn-info btn-sm"><i class="far fa-edit"></i></a>
+                    <a href="' . route('admin.listing.destroy', $query->id) . '" class="ml-2 btn btn-danger btn-sm" id="delete-item"><i class="far fa-trash-alt"></i></a>
+                    <div class="ml-2 btn-group dropleft">
+                      <button type="button" class="btn btn-sm btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v"></i>
+                      </button>
+                      <div class="dropdown-menu dropleft" style="background-color: #F5F5F5;">
+                        <a class="dropdown-item" href="' . route("admin.listing.show", $query->id) . '">Details</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="' . route("admin.image-gallery.index") . '">Gallery</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Schedule</a>
+                      </div>
+                    </div>
                 </div>';
             })
             ->addColumn('category', function ($query) {
@@ -78,7 +90,7 @@ class ListingDataTable extends DataTable
             ->columns($this->getColumns())
             ->minifiedAjax()
             //->dom('Bfrtip')
-            ->orderBy(1)
+            ->orderBy(0, 'asc')
             ->selectStyleSingle()
             ->buttons([
                 Button::make('excel'),

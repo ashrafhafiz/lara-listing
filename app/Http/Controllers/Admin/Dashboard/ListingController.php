@@ -13,6 +13,7 @@ use App\Traits\FileUploadTrait;
 use App\DataTables\ListingDataTable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Dashboard\ListingStoreRequest;
+use App\Http\Requests\Admin\Dashboard\ListingUpdateRequest;
 
 class ListingController extends Controller
 {
@@ -47,7 +48,7 @@ class ListingController extends Controller
 
         $imagePath = $this->uploadImage($request, 'image');
         $thumbnailPath = $this->uploadImage($request, 'thumbnail');
-        $attachementPath = $this->uploadImage($request, 'attachement');
+        $attachmentPath = $this->uploadImage($request, 'attachment');
 
         $listing = new Listing();
 
@@ -59,8 +60,8 @@ class ListingController extends Controller
             $listing->thumbnail = $thumbnailPath;
         }
 
-        if (!empty($attachementPath)) {
-            $listing->attachment = $attachementPath;
+        if (!empty($attachmentPath)) {
+            $listing->attachment = $attachmentPath;
         }
 
         $listing->title = $request->title;
@@ -69,7 +70,6 @@ class ListingController extends Controller
         $listing->category_id = $request->category_id;
         $listing->location_id = $request->location_id;
         $listing->package_id = 1;
-        // $listing->amenity_id = $request->amenity_id;
         $listing->description = $request->description;
         $listing->google_map_embed_code = $request->google_map_embed_code;
         $listing->seo_title = $request->seo_title;
@@ -82,7 +82,7 @@ class ListingController extends Controller
         $listing->twitter_link = $request->twitter_link;
         $listing->linkedin_link = $request->linkedin_link;
         $listing->whatsapp_link = $request->whatsapp_link;
-        $listing->is_verified = $request->is_featured === 'on' ? 1 : 0;
+        $listing->is_verified = $request->is_verified === 'on' ? 1 : 0;
         $listing->is_featured = $request->is_featured === 'on' ? 1 : 0;
         $listing->status = $request->status === 'on' ? 1 : 0;
         $listing->expire_at = Carbon::now()->addMonths(2);
@@ -108,14 +108,66 @@ class ListingController extends Controller
      */
     public function edit(string $id)
     {
-        return view('admin.dashboard.listing.edit');
+        $data['listing'] = Listing::findOrFail($id);
+        // dd($data['listing']->title);
+        // dd(json_encode($data['listing']->amenities->pluck('id')));
+        $data['categories'] = Category::activeCategories();
+        $data['locations'] = Location::activeLocations();
+        $data['packages'] = Package::activePackages();
+        $data['amenities'] = Amenity::activeAmenities();
+        return view('admin.dashboard.listing.edit', $data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ListingUpdateRequest $request, Listing $listing)
     {
+        // dd($request->all());
+
+        $imagePath = $this->uploadImage($request, 'image');
+        $thumbnailPath = $this->uploadImage($request, 'thumbnail');
+        $attachmentPath = $this->uploadImage($request, 'attachment');
+
+        if (!empty($imagePath)) {
+            $listing->image = $imagePath;
+        }
+
+        if (!empty($thumbnailPath)) {
+            $listing->thumbnail = $thumbnailPath;
+        }
+
+        if (!empty($attachmentPath)) {
+            $listing->attachment = $attachmentPath;
+        }
+
+        $listing->title = $request->title;
+        $listing->slug = $request->slug;
+        $listing->user_id = $request->user()->id;
+        $listing->category_id = $request->category_id;
+        $listing->location_id = $request->location_id;
+        $listing->package_id = 1;
+        $listing->description = $request->description;
+        $listing->google_map_embed_code = $request->google_map_embed_code;
+        $listing->seo_title = $request->seo_title;
+        $listing->seo_description = $request->seo_description;
+        $listing->email = $request->email;
+        $listing->phone = $request->phone;
+        $listing->address = $request->address;
+        $listing->website = $request->website;
+        $listing->facebook_link = $request->facebook_link;
+        $listing->twitter_link = $request->twitter_link;
+        $listing->linkedin_link = $request->linkedin_link;
+        $listing->whatsapp_link = $request->whatsapp_link;
+        $listing->is_verified = $request->is_verified === 'on' ? 1 : 0;
+        $listing->is_featured = $request->is_featured === 'on' ? 1 : 0;
+        $listing->status = $request->status === 'on' ? 1 : 0;
+        $listing->expire_at = Carbon::now()->addMonths(2);
+
+        $listing->save();
+
+        $listing->amenities()->sync($request->amenities_id);
+
         toastr()->success('Listing has been updated successfully!');
         return redirect()->back();
     }
@@ -125,6 +177,23 @@ class ListingController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $listing = Listing::findOrFail($id);
+            $this->deleteImage($listing->image);
+            $this->deleteImage($listing->thumbnail);
+            $listing->delete();
+
+            return response([
+                'status' => 'success',
+                'message' => 'Listing has been deleted successfully.',
+            ]);
+        } catch (\Exception $e) {
+            logger($e);
+
+            return response([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+            ]);
+        }
     }
 }

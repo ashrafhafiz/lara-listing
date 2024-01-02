@@ -1,14 +1,16 @@
 <?php
 
+use App\Models\ImageGallery;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\Dashboard\AmenityController;
+use App\Http\Controllers\Admin\Dashboard\ListingController;
 use App\Http\Controllers\Admin\Dashboard\CategoryController;
 use App\Http\Controllers\Admin\Dashboard\LocationController;
 use App\Http\Controllers\Admin\Dashboard\HeroSectionController;
-use App\Http\Controllers\Admin\Dashboard\ListingController;
+use App\Http\Controllers\Admin\Dashboard\ImageGalleryController;
 
 Route::prefix('admin')->name('admin.')->group(function () {
 
@@ -42,5 +44,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('listings/location', LocationController::class);
         Route::resource('listings/amenity', AmenityController::class);
         Route::resource('listings/listing', ListingController::class);
+        Route::resource('listings/image-gallery', ImageGalleryController::class);
     });
 });

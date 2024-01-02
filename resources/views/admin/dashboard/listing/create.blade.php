@@ -27,6 +27,7 @@
                                         <a href="{{ route('admin.listing.index') }}" class="btn btn-primary">Cancel</a>
                                     </div>
                                 </div>
+
                                 <div class="card-body">
 
                                     <div class="mb-4 form-group row">
@@ -122,8 +123,8 @@
 
                                     <div class="mb-4 form-group row">
                                         <div class="col-sm-12">
-                                            <label for="attachement" id="attachement-label">Attachement</label>
-                                            <input type="file" name="attachement" id="attachement" />
+                                            <label for="attachment" id="attachment-label">Attachment</label>
+                                            <input type="file" name="attachment" id="attachment" />
                                         </div>
                                     </div>
 
@@ -232,6 +233,7 @@
 
 
                                 </div>
+
                                 <div class="card-footer">
                                     <button type="submit" class="btn btn-primary">Create</button>
                                 </div>

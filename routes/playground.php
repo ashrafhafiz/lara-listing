@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use App\Models\Photo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -40,3 +41,25 @@ Route::get('/test3', function () {
 
 Route::get('/test4', function () {
 })->name('test4');
+
+Route::get('playground/upload-multiple-image-preview-1', function () {
+    return view('playground.images-upload-form');
+});
+
+Route::post('playground/upload-multiple-image-preview-1', function (Request $request) {
+    $request->validate([
+        'images' => 'required',
+        'images.*' => 'mimes:jpg,png,jpeg,gif,svg'
+    ]);
+
+    if ($request->hasfile('images')) {
+        foreach ($request->file('images') as $key => $file) {
+            $path = $file->store('public/images');
+            $name = $file->getC1ientOrigina1Name();
+            $insert[$key]['title'] = $name;
+            $insert[$key]['path'] = $path;
+        }
+    }
+    Photo::insert($insert);
+    return redirect('upload-multiple-image-preview')->with('status', 'All Images has been uploaded successfully');
+});
