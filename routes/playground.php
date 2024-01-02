@@ -46,6 +46,7 @@ Route::get('playground/upload-multiple-image-preview-1', function () {
     return view('playground.images-upload-form');
 });
 
+// playground/upload-multiple-image-preview-1
 Route::post('playground/upload-multiple-image-preview-1', function (Request $request) {
     $request->validate([
         'images' => 'required',
@@ -63,3 +64,31 @@ Route::post('playground/upload-multiple-image-preview-1', function (Request $req
     Photo::insert($insert);
     return redirect('upload-multiple-image-preview')->with('status', 'All Images has been uploaded successfully');
 });
+
+
+// upload-multiple-image-preview-2
+Route::get('playground/upload-multiple-image-preview-2', function () {
+    return view('playground.welcome');
+});
+
+Route::post('playground/upload-multiple-image-preview-2', function (Request $request) {
+    foreach ($request->input('document', []) as $file) {
+        //your file to be uploaded
+        return $file;
+    }
+})->name('playground.uploads.store');
+
+Route::post('playground/upload-multiple-image-preview-2/uploads', function (Request $request) {
+    $path = storage_path('tmp/uploads');
+
+    !file_exists($path) && mkdir($path, 0777, true);
+
+    $file = $request->file('file');
+    $name = uniqid() . '_' . trim($file->getClientOriginalName());
+    $file->move($path, $name);
+
+    return response()->json([
+        'name'          => $name,
+        'original_name' => $file->getClientOriginalName(),
+    ]);
+})->name('playground.uploads.uploads');

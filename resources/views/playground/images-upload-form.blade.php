@@ -35,9 +35,11 @@
                 for (i = 0; i < filesAmount; i++) {
                     var reader = new FileReader();
                     reader.onload = function(event) {
-                        $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(imgPreviewPlaceholder);
+                        $($.parseHTML('<img style="width: 200px !important; margin-right: 10px;">'))
+                            .attr('src', event.target.result)
+                            .appendTo(imgPreviewPlaceholder);
                     }
-                    redaer.readAsDataURL(input.files[i]);
+                    reader.readAsDataURL(input.files[i]);
                 }
             }
         };
