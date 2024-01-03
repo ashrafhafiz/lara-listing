@@ -4,6 +4,7 @@
     <title>General Dashboard &mdash; Stisla</title>
 
     <!-- General CSS Files -->
+    <link rel="stylesheet" href="https://cdn.rawgit.com/enyo/dropzone/master/dist/dropzone.css">
     <link rel="stylesheet" href="{{ asset('assets/admin/modules/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/modules/fontawesome/css/all.min.css') }}">
 
@@ -14,6 +15,7 @@
     <link rel="stylesheet" href="{{ asset('assets/admin/modules/bootstrap-social/bootstrap-social.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <link rel="stylesheet" href="{{ asset('assets/admin/modules/select2/dist/css/select2.min.css') }}">
+    @stack('style')
 
     <!-- Bootstrap-Iconpicker -->
     <link rel="stylesheet"
@@ -23,7 +25,6 @@
     {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap4.min.css">
     {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css"> --}}
-
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('assets/admin/css/style.css') }}">

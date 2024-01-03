@@ -1,10 +1,11 @@
 <?php
 
 use App\Models\User;
-use App\Models\Photo;
 use Illuminate\Http\Request;
+use App\Models\Playground\Photo;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Playground\PostAjaxController;
 
 Route::get('/test1', function () {
     $user = Auth::user();
@@ -42,12 +43,13 @@ Route::get('/test3', function () {
 Route::get('/test4', function () {
 })->name('test4');
 
+// playground/upload-multiple-image-preview-1
 Route::get('playground/upload-multiple-image-preview-1', function () {
     return view('playground.images-upload-form');
 });
 
-// playground/upload-multiple-image-preview-1
 Route::post('playground/upload-multiple-image-preview-1', function (Request $request) {
+    // dd($request->all());
     $request->validate([
         'images' => 'required',
         'images.*' => 'mimes:jpg,png,jpeg,gif,svg'
@@ -56,13 +58,13 @@ Route::post('playground/upload-multiple-image-preview-1', function (Request $req
     if ($request->hasfile('images')) {
         foreach ($request->file('images') as $key => $file) {
             $path = $file->store('public/images');
-            $name = $file->getC1ientOrigina1Name();
+            $name = $file->getClientOriginalName();
             $insert[$key]['title'] = $name;
             $insert[$key]['path'] = $path;
         }
     }
     Photo::insert($insert);
-    return redirect('upload-multiple-image-preview')->with('status', 'All Images has been uploaded successfully');
+    return redirect('playground/upload-multiple-image-preview-1')->with('status', 'All Images has been uploaded successfully');
 });
 
 
@@ -72,9 +74,18 @@ Route::get('playground/upload-multiple-image-preview-2', function () {
 });
 
 Route::post('playground/upload-multiple-image-preview-2', function (Request $request) {
+    // dd(storage_path('tmp/uploads/'));
+
+    $sourceDir = storage_path('tmp/uploads/');
+    $targetDir = public_path('uploads/');
     foreach ($request->input('document', []) as $file) {
-        //your file to be uploaded
-        return $file;
+        rename($sourceDir . $file, $targetDir . $file);
+        Photo::create([
+            // 'listing_id' => $listing->id,
+            // 'type' => 'photo',
+            'title' => $file,
+            'path' => '/uploads/' . $file
+        ]);
     }
 })->name('playground.uploads.store');
 
@@ -92,3 +103,6 @@ Route::post('playground/upload-multiple-image-preview-2/uploads', function (Requ
         'original_name' => $file->getClientOriginalName(),
     ]);
 })->name('playground.uploads.uploads');
+
+// CRYD Operations with AJAX
+Route::resource('playground/ajaxposts', PostAjaxController::class);

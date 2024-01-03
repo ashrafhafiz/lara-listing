@@ -1,6 +1,7 @@
 @extends('playground.layouts.app')
 
 @push('style')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -21,7 +22,7 @@
                                 <label for="document">Documents</label>
                                 <div class="needsclick dropzone" id="document-dropzone">
                                 </div>
-                                <button type="submit" class="btn btn-info mt-5">Submit</button>
+                                <button type="submit" class="mt-5 btn btn-info">Submit</button>
                         </form>
                     </div>
                 </div>

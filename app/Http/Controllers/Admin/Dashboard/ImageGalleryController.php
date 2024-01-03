@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers\Admin\Dashboard;
 
-use App\Http\Controllers\Controller;
+use App\Models\Listing;
 use Illuminate\Http\Request;
+use App\Models\Playground\Photo;
+use App\Http\Controllers\Controller;
+use App\Models\Media;
 
 class ImageGalleryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(string $id)
     {
-        return view('admin.dashboard.image-gallery.index');
+        $data['listing'] = Listing::findOrFail($id);
+        return view('admin.dashboard.image-gallery.index', $data);
     }
 
     /**
@@ -28,7 +32,19 @@ class ImageGalleryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+
+        $sourceDir = storage_path('tmp/uploads/');
+        $targetDir = public_path('uploads/');
+        foreach ($request->input('document', []) as $file) {
+            rename($sourceDir . $file, $targetDir . $file);
+            Media::create([
+                'user_id' => $request->user()->id,
+                'listing_id' => $request->listing_id,
+                'media_type' => 'photo',
+                'media_path' => '/uploads/' . $file
+            ]);
+        }
     }
 
     /**
@@ -61,5 +77,21 @@ class ImageGalleryController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function uploads(Request $request)
+    {
+        $path = storage_path('tmp/uploads');
+
+        !file_exists($path) && mkdir($path, 0777, true);
+
+        $file = $request->file('file');
+        $name = uniqid() . '_' . trim($file->getClientOriginalName());
+        $file->move($path, $name);
+
+        return response()->json([
+            'name'          => $name,
+            'original_name' => $file->getClientOriginalName(),
+        ]);
     }
 }

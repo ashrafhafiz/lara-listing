@@ -21,6 +21,8 @@ namespace App\Models{
  * @property int $status
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Listing> $listings
+ * @property-read int|null $listings_count
  * @method static \Illuminate\Database\Eloquent\Builder|Amenity activeAmenities()
  * @method static \Illuminate\Database\Eloquent\Builder|Amenity newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Amenity newQuery()
@@ -94,6 +96,23 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\ImageGallery
+ *
+ * @property int $id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|ImageGallery newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ImageGallery newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ImageGallery query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ImageGallery whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ImageGallery whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ImageGallery whereUpdatedAt($value)
+ */
+	class ImageGallery extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Listing
  *
  * @property int $id
@@ -119,18 +138,23 @@ namespace App\Models{
  * @property int $is_verified
  * @property int $is_featured
  * @property int $views
- * @property string|null $goggle_map_embed_code
- * @property string|null $file
+ * @property string|null $google_map_embed_code
+ * @property string|null $attachment
  * @property int $status
  * @property string $expire_at
  * @property string|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Amenity> $amenities
+ * @property-read int|null $amenities_count
+ * @property-read \App\Models\Category $category
+ * @property-read \App\Models\Location $location
  * @method static \Database\Factories\ListingFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Listing newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Listing newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Listing query()
  * @method static \Illuminate\Database\Eloquent\Builder|Listing whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Listing whereAttachment($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Listing whereCategoryId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Listing whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Listing whereDeletedAt($value)
@@ -138,8 +162,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Listing whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Listing whereExpireAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Listing whereFacebookLink($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Listing whereFile($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Listing whereGoggleMapEmbedCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Listing whereGoogleMapEmbedCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Listing whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Listing whereImage($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Listing whereIsFeatured($value)
@@ -192,6 +215,31 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Media
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int $listing_id
+ * @property string $media_type
+ * @property string $media_path
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Media newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Media newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Media query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Media whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Media whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Media whereListingId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Media whereMediaPath($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Media whereMediaType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Media whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Media whereUserId($value)
+ */
+	class Media extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Package
  *
  * @property int $id
@@ -216,6 +264,48 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Package whereUpdatedAt($value)
  */
 	class Package extends \Eloquent {}
+}
+
+namespace App\Models\Playground{
+/**
+ * App\Models\Playground\Photo
+ *
+ * @property int $id
+ * @property string|null $title
+ * @property string $path
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Photo newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Photo newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Photo query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Photo whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Photo whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Photo wherePath($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Photo whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Photo whereUpdatedAt($value)
+ */
+	class Photo extends \Eloquent {}
+}
+
+namespace App\Models\Playground{
+/**
+ * App\Models\Playground\Post
+ *
+ * @property int $id
+ * @property string|null $title
+ * @property string|null $description
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Post newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Post newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Post query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Post whereUpdatedAt($value)
+ */
+	class Post extends \Eloquent {}
 }
 
 namespace App\Models{

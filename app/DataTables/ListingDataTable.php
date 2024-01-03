@@ -33,9 +33,9 @@ class ListingDataTable extends DataTable
                       <i class="fas fa-ellipsis-v"></i>
                       </button>
                       <div class="dropdown-menu dropleft" style="background-color: #F5F5F5;">
-                        <a class="dropdown-item" href="' . route("admin.listing.show", $query->id) . '">Details</a>
+                        <a class="dropdown-item" href="' . route('admin.listing.show', $query->id) . '">Details</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="' . route("admin.image-gallery.index") . '">Gallery</a>
+                        <a class="dropdown-item" href="' . route('admin.image-gallery.index',  $query->id) . '">Gallery</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Schedule</a>
                       </div>

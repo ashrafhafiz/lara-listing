@@ -44,6 +44,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('listings/location', LocationController::class);
         Route::resource('listings/amenity', AmenityController::class);
         Route::resource('listings/listing', ListingController::class);
-        Route::resource('listings/image-gallery', ImageGalleryController::class);
+
+        Route::get('listings/image-gallery/{listing}/edit', [ImageGalleryController::class, 'index'])->name('image-gallery.index');
+        Route::post('listings/image-gallery', [ImageGalleryController::class, 'store'])->name('image-gallery.store');
+        Route::post('listings/image-gallery/uploads', [ImageGalleryController::class, 'uploads'])->name('image-gallery.uploads');
     });
 });
